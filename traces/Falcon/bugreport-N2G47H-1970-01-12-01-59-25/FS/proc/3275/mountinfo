@@ -1,0 +1,29 @@
+1395 1395 0:2 / / rw master:1 - rootfs rootfs rw,seclabel,size=828400k,nr_inodes=207100
+1396 1395 0:12 / /dev rw,nosuid,relatime master:2 - tmpfs tmpfs rw,seclabel,size=934128k,nr_inodes=233532,mode=755
+1397 1396 0:10 / /dev/pts rw,relatime master:3 - devpts devpts rw,seclabel,mode=600
+1398 1396 0:17 / /dev/cpuctl rw,relatime master:4 - cgroup none rw,cpu
+1399 1396 0:19 / /dev/usb-ffs/adb rw,relatime master:21 - functionfs adb rw
+1400 1396 0:20 / /dev/usb-ffs/rest rw,relatime master:22 - functionfs rest rw
+1401 1396 0:21 / /dev/usb-ffs/stream rw,relatime master:23 - functionfs stream rw
+1402 1395 0:4 / /proc rw,relatime master:5 - proc proc rw,gid=3009,hidepid=2
+1403 1395 0:13 / /sys rw,relatime master:6 - sysfs sysfs rw,seclabel
+1404 1403 0:11 / /sys/fs/selinux rw,relatime master:7 - selinuxfs selinuxfs rw
+1405 1403 0:5 / /sys/kernel/debug rw,relatime master:8 - debugfs debugfs rw,seclabel
+1406 1395 0:14 / /acct rw,relatime master:9 - cgroup none rw,cpuacct
+1407 1395 0:15 / /mnt rw,relatime master:10 - tmpfs tmpfs rw,seclabel,size=934128k,nr_inodes=233532,mode=755,gid=1000
+1408 1407 0:22 / /mnt/runtime/default/emulated rw,nosuid,nodev,noexec,noatime shared:25 master:24 - fuse /dev/fuse rw,user_id=1023,group_id=1023,default_permissions,allow_other
+1409 1407 0:23 / /mnt/runtime/read/emulated rw,nosuid,nodev,noexec,noatime shared:27 master:26 - fuse /dev/fuse rw,user_id=1023,group_id=1023,default_permissions,allow_other
+1410 1407 0:24 / /mnt/runtime/write/emulated rw,nosuid,nodev,noexec,noatime shared:29 master:28 - fuse /dev/fuse rw,user_id=1023,group_id=1023,default_permissions,allow_other
+1411 1395 0:16 / /config rw,relatime master:11 - configfs none rw
+1412 1395 179:24 / /system rw,relatime master:12 - ext4 /dev/block/bootdevice/by-name/system rw,seclabel,discard,data=ordered
+1413 1395 259:22 / /data rw,nosuid,nodev,relatime master:13 - ext4 /dev/block/bootdevice/by-name/userdata rw,seclabel,discard,noauto_da_alloc,data=ordered
+1414 1395 179:25 / /cache rw,nosuid,nodev,relatime master:14 - ext4 /dev/block/bootdevice/by-name/cache rw,seclabel,data=ordered
+1415 1395 179:26 / /persist rw,nosuid,nodev,relatime master:15 - ext4 /dev/block/bootdevice/by-name/persist rw,seclabel,data=ordered
+1416 1395 179:12 / /dsp ro,nosuid,nodev,relatime master:16 - ext4 /dev/block/bootdevice/by-name/dsp ro,seclabel,data=ordered
+1417 1395 179:1 / /firmware ro,relatime master:17 - vfat /dev/block/bootdevice/by-name/modem ro,context=u:object_r:firmware_file:s0,uid=1000,gid=1000,fmask=0337,dmask=0227,codepage=437,iocharset=iso8859-1,shortname=lower,errors=remount-ro
+1418 1395 259:19 / /iir rw,nodev,relatime master:18 - ext4 /dev/block/bootdevice/by-name/iir rw,seclabel,data=ordered
+1419 1395 259:20 / /iircfg rw,nosuid,nodev,relatime master:19 - ext4 /dev/block/bootdevice/by-name/iircfg rw,seclabel,data=ordered
+1420 1395 0:18 / /var rw,relatime master:20 - tmpfs tmpfs rw,seclabel,size=934128k,nr_inodes=233532,mode=771
+1421 1395 0:15 /runtime/default /storage rw,relatime master:10 - tmpfs tmpfs rw,seclabel,size=934128k,nr_inodes=233532,mode=755,gid=1000
+1422 1421 0:22 / /storage/emulated rw,nosuid,nodev,noexec,noatime shared:25 master:24 - fuse /dev/fuse rw,user_id=1023,group_id=1023,default_permissions,allow_other
+1423 1421 0:15 /user/0 /storage/self rw,relatime master:10 - tmpfs tmpfs rw,seclabel,size=934128k,nr_inodes=233532,mode=755,gid=1000
