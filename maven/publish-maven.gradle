@@ -1,0 +1,140 @@
+/**
+ * Compare the current gradle version to given version
+ * @param version : given version
+ * @return 1: currentVersion > givenVersion; -1: currentVersion < givenVersion
+ *         0: currentVersion == givenVersion
+ */
+int checkGradleVersion(String version) {
+    List cVerList = gradle.gradleVersion.tokenize('.')
+    List verList = version.tokenize('.')
+    def len = Math.min(cVerList.size(), verList.size())
+    for (int i = 0; i < len; i++) {
+        def cInteger = cVerList[i].toInteger()
+        def integer = verList[i].toInteger()
+        if (cInteger != integer) {
+            return cInteger <=> integer
+        }
+    }
+    return 0
+}
+
+def getRepoUrl() {
+    return hasProperty('REPO_URL') ? REPO_URL : ''
+}
+
+def getRepoUserName() {
+    return hasProperty('REPO_USERNAME') ? REPO_USERNAME : ''
+}
+
+def getRepoPassword() {
+    return hasProperty('REPO_PASSWORD') ? REPO_PASSWORD : ''
+}
+
+def getPomGroupId() {
+    return hasProperty('POM_GROUP_ID') ? POM_GROUP_ID : ''
+}
+
+def getPomArtifactId() {
+    return hasProperty('POM_ARTIFACT_ID') ? POM_ARTIFACT_ID : ''
+}
+
+def getPomVersion() {
+    return hasProperty('POM_VERSION') ? POM_VERSION : ''
+}
+
+def getPomPackaging() {
+    return hasProperty('POM_PACKAGING') ? POM_PACKAGING : ''
+}
+
+def getPomDescription() {
+    return hasProperty('POM_DESCRIPTION') ? POM_DESCRIPTION : ''
+}
+
+def isGradleVersion4 = (checkGradleVersion('4.0') >= 0)
+
+def isGradleVersion7 = (checkGradleVersion('7.0') >= 0)
+
+configurations.all {
+    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+if (isGradleVersion4) {
+    apply plugin: 'maven-publish'
+
+    afterEvaluate {
+        publishing {
+            repositories {
+                maven {
+                    if (isGradleVersion7) {
+                        allowInsecureProtocol = true
+                    }
+                    url getRepoUrl()
+                    credentials {
+                        username getRepoUserName()
+                        password getRepoPassword()
+                    }
+                }
+            }
+            publications {
+                release(MavenPublication) {
+                    if (components.hasWithName('java')) {
+                        from components.java
+                    } else if (components.hasWithName('release')) {
+                        from components.release
+                    }
+                    def pomGroupId = getPomGroupId()
+                    if (pomGroupId != '' && pomGroupId != groupId) {
+                        groupId pomGroupId
+                    }
+                    def pomArtifactId = getPomArtifactId()
+                    if (pomArtifactId != '' && pomArtifactId != artifactId) {
+                        artifactId pomArtifactId
+                    }
+                    def pomVersion = getPomVersion()
+                    if (pomVersion != '' && pomVersion != version) {
+                        version pomVersion
+                    }
+                    if (getRepoUrl().toLowerCase().contains("snapshot") && version != '') {
+                        version version + "-SNAPSHOT"
+                    } else {
+                        version version
+                    }
+                }
+            }
+        }
+    }
+} else {
+    apply plugin: 'maven'
+
+    publishing {
+        repositories {
+            mavenDeployer {
+                repository(url: getRepoUrl()) {
+                    authentication(userName: getRepoUserName(), password: getRepoPassword())
+                }
+                pom.project {
+                    if (components.hasWithName('java')) {
+                        from components.java
+                    } else if (components.hasWithName('release')) {
+                        from components.release
+                    }
+                    name getArtifactId()
+                    groupId getGroupId()
+                    artifactId getArtifactId()
+                    version getVersion()
+                    packaging getPackaging()
+                    description getDescription()
+                }
+            }
+        }
+    }
+}

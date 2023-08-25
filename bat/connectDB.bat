@@ -31,10 +31,8 @@ set tempPath=%roamingPath:Roaming=Local%\Temp\db
 set CUR_YYYY=%date:~,4%
 set CUR_MM=%date:~5,2%
 set CUR_DD=%date:~8,2%
-set CUR_HH=%time:~0,2%
-set CUR_NN=%time:~3,2%
-set CUR_SS=%time:~6,2%
-set ticks=%CUR_YYYY%%CUR_MM%%CUR_DD%_%CUR_HH%%CUR_NN%%CUR_SS%
+
+set ticks=%CUR_YYYY%%CUR_MM%%CUR_DD%
 
 set tempFileName=%fileName%_%ticks%%fileExtend%
 echo 数据库已连接：%tempPath%\%tempFileName%
