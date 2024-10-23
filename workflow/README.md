@@ -1,4 +1,4 @@
-# Fotric Android WorkFlow
+# Android WorkFlow
 
 ## 1. 说明
 
@@ -50,7 +50,7 @@
 
 6. 构建项目；
 
-7. 归档安装程序，复制到ftp目录（以Falcon为例 D:/fotric/APP/Falcon），目录结构为：
+7. 归档安装程序，复制到ftp目录（以Falcon为例 D:/APP/Falcon），目录结构为：
 
    ```
    |---V1.4.3.435                 V1.4.3版本安装包

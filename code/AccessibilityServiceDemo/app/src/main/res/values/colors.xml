@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="xframe_color_text">#33D4D4D4</color>
+    <color name="xframe_color_disabled">#FF939699</color>
+    <color name="color_selected">#EED4D4D4</color>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="xframe_function_image_button_title_size">12sp</dimen>
+    <dimen name="xframe_function_image_button_title_padding_top">4dp</dimen>
+    <dimen name="xframe_function_image_button_highlight_ripple_radius">80dp</dimen>
+</resources>

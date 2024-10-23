@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FunctionImageButton">
+        <attr name="description" format="reference|string" />
+        <attr name="title" format="reference|string" />
+        <attr name="titlePaddingTop" format="dimension" />
+        <attr name="titleColor" format="color" />
+        <attr name="titleSize" format="dimension" />
+        <attr name="icon" format="reference" />
+        <attr name="iconWidth" format="dimension" />
+        <attr name="iconHeight" format="dimension" />
+        <attr name="iconColorTint" format="color" />
+        <attr name="backgroundSelected" format="color|reference" />
+        <attr name="colorSelected" format="color" />
+        <attr name="backgroundDisabled" format="color|reference" />
+        <attr name="selected" format="boolean" />
+        <attr name="selectEnable" format="boolean" />
+        <attr name="enabled" format="boolean" />
+        <attr name="rippled" format="boolean" />
+    </declare-styleable>
+</resources>

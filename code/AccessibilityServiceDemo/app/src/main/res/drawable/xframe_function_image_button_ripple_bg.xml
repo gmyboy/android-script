@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/xframe_color_highlight"
+    android:radius="@dimen/xframe_function_image_button_highlight_ripple_radius" />

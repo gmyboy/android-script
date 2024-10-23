@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">无障碍拓展</string>
+    <string name="service_click">模拟连续点击指定位置</string>
+</resources>
